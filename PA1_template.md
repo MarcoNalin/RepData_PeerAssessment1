@@ -142,8 +142,69 @@ fulldata$daytype <- ifelse(weekdays(as.Date(fulldata$date)) %in% c("sabato", "do
 
 # Calculating mean for intervals
 library(bear)
-summarizedData <- summarySE(data=fulldata, measurevar="steps", groupvars=c("daytype", "interval"), na.rm=FALSE, conf.interval=.95)
+```
 
+```
+## Loading required package: reshape
+## Loading required package: nlme
+## Loading required package: gdata
+## gdata: Unable to locate valid perl interpreter
+## gdata: 
+## gdata: read.xls() will be unable to read Excel XLS and XLSX files
+## gdata: unless the 'perl=' argument is used to specify the location
+## gdata: of a valid perl intrpreter.
+## gdata: 
+## gdata: (To avoid display of this message in the future, please
+## gdata: ensure perl is installed and available on the executable
+## gdata: search path.)
+## gdata: Unable to load perl libaries needed by read.xls()
+## gdata: to support 'XLX' (Excel 97-2004) files.
+## 
+## gdata: Unable to load perl libaries needed by read.xls()
+## gdata: to support 'XLSX' (Excel 2007+) files.
+## 
+## gdata: Run the function 'installXLSXsupport()'
+## gdata: to automatically download and install the perl
+## gdata: libaries needed to support Excel XLS and XLSX formats.
+## 
+## Attaching package: 'gdata'
+## 
+## The following object is masked from 'package:stats':
+## 
+##     nobs
+## 
+## The following object is masked from 'package:utils':
+## 
+##     object.size
+## 
+## 
+## ....................................
+##                           
+##    bear (BE/BA for R) 
+##    v2.6.3
+##    under license of GPL-2|GPL-3
+##                                                                    
+##    Please type 'go()' to run; or
+##    'about.bear()' to read more.               
+## 
+## ....................................
+```
+
+```r
+summarizedData <- summarySE(data=fulldata, measurevar="steps", groupvars=c("daytype", "interval"), na.rm=FALSE, conf.interval=.95)
+```
+
+```
+## Loading required package: plyr
+## 
+## Attaching package: 'plyr'
+## 
+## The following objects are masked from 'package:reshape':
+## 
+##     rename, round_any
+```
+
+```r
 #Plotting the two graps
 ggplot(summarizedData, aes(x=interval, y=steps)) + geom_line() + facet_grid(daytype ~ .)
 ```

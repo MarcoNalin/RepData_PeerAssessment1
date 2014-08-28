@@ -311,9 +311,66 @@ fulldata$daytype &lt;- ifelse(weekdays(as.Date(fulldata$date)) %in% c(&quot;saba
 
 # Calculating mean for intervals
 library(bear)
-summarizedData &lt;- summarySE(data=fulldata, measurevar=&quot;steps&quot;, groupvars=c(&quot;daytype&quot;, &quot;interval&quot;), na.rm=FALSE, conf.interval=.95)
+</code></pre>
 
-#Plotting the two graps
+<pre><code>## Loading required package: reshape
+## Loading required package: nlme
+## Loading required package: gdata
+## gdata: Unable to locate valid perl interpreter
+## gdata: 
+## gdata: read.xls() will be unable to read Excel XLS and XLSX files
+## gdata: unless the &#39;perl=&#39; argument is used to specify the location
+## gdata: of a valid perl intrpreter.
+## gdata: 
+## gdata: (To avoid display of this message in the future, please
+## gdata: ensure perl is installed and available on the executable
+## gdata: search path.)
+## gdata: Unable to load perl libaries needed by read.xls()
+## gdata: to support &#39;XLX&#39; (Excel 97-2004) files.
+## 
+## gdata: Unable to load perl libaries needed by read.xls()
+## gdata: to support &#39;XLSX&#39; (Excel 2007+) files.
+## 
+## gdata: Run the function &#39;installXLSXsupport()&#39;
+## gdata: to automatically download and install the perl
+## gdata: libaries needed to support Excel XLS and XLSX formats.
+## 
+## Attaching package: &#39;gdata&#39;
+## 
+## The following object is masked from &#39;package:stats&#39;:
+## 
+##     nobs
+## 
+## The following object is masked from &#39;package:utils&#39;:
+## 
+##     object.size
+## 
+## 
+## ....................................
+##                           
+##    bear (BE/BA for R) 
+##    v2.6.3
+##    under license of GPL-2|GPL-3
+##                                                                    
+##    Please type &#39;go()&#39; to run; or
+##    &#39;about.bear()&#39; to read more.               
+## 
+## ....................................
+</code></pre>
+
+<pre><code class="r">summarizedData &lt;- summarySE(data=fulldata, measurevar=&quot;steps&quot;, groupvars=c(&quot;daytype&quot;, &quot;interval&quot;), na.rm=FALSE, conf.interval=.95)
+</code></pre>
+
+<pre><code>## Loading required package: plyr
+## 
+## Attaching package: &#39;plyr&#39;
+## 
+## The following objects are masked from &#39;package:reshape&#39;:
+## 
+##     rename, round_any
+</code></pre>
+
+<pre><code class="r">#Plotting the two graps
 ggplot(summarizedData, aes(x=interval, y=steps)) + geom_line() + facet_grid(daytype ~ .)
 </code></pre>
 
